@@ -1,0 +1,32 @@
+{
+  "apps": [
+    {
+      "name": "{{ pm2_app_name }}",
+      "script": "./dist/server/main.js",
+      "cwd": "{{ dspace_frontend_source_dir }}",
+      "instances": {{ pm2_instances }},
+      "exec_mode": "{{ pm2_exec_mode }}",
+      "env": {
+        "NODE_ENV": "production",
+        "NODE_OPTIONS": "--max-old-space-size=4096",
+        "DSPACE_APP_CONFIG_PATH": "{{ dspace_frontend_config_dir }}/config.prod.yml"
+      },
+      "node_args": "--max-old-space-size=4096",
+      "error_file": "{{ pm2_log_dir }}/{{ pm2_app_name }}-error.log",
+      "out_file": "{{ pm2_log_dir }}/{{ pm2_app_name }}-out.log",
+      "log_file": "{{ pm2_log_dir }}/{{ pm2_app_name }}-combined.log",
+      "time": true,
+      "log_date_format": "YYYY-MM-DD HH:mm:ss Z",
+      "merge_logs": true,
+      "watch": false,
+      "max_memory_restart": "2G",
+      "min_uptime": "10s",
+      "max_restarts": 10,
+      "autorestart": true,
+      "kill_timeout": 10000,
+      "wait_ready": true,
+      "listen_timeout": 10000,
+      "vizion": false
+    }
+  ]
+}
