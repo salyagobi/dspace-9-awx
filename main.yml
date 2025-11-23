@@ -82,4 +82,7 @@
 
 - name: Import DSpace Frontend Installation tasks
   import_playbook: install-frontend.yml
+
+- name: Import DSpace Frontend Installation tasks
+  import_playbook: firewall.yml
     
