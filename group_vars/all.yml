@@ -109,7 +109,7 @@ ant_opts: "-Xmx1024M -Xms512M"
 
 # System settings
 timezone: "UTC"
-locale: "ar_LY.UTF-8"
+locale: "en_GB.UTF-8"
 
 # Nginx configuration
 nginx_user: "www-data"
