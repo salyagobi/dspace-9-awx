@@ -51,7 +51,7 @@ solr_user: "solr"
 solr_group: "solr"
 
 # Tomcat configuration
-tomcat_version: "10.1.33"
+tomcat_version: "10.1.39"
 tomcat_port: 8080
 tomcat_home: "/opt/tomcat"
 tomcat_user: "tomcat"
@@ -61,10 +61,10 @@ tomcat_group: "tomcat"
 dspace_server_url: "http://{{ domain_name }}/server"
 dspace_ui_url: "http://{{ domain_name }}/"
 dspace_name: "DSpace at My Organization"
-dspace_admin_email: "admin@localhost"
+dspace_admin_email: "admin@{{ domain_name }}"
 dspace_admin_firstname: "Admin"
 dspace_admin_lastname: "User"
-dspace_admin_password: "admin"
+dspace_admin_password: "{{ ansible_hostname }}"
 
 # DSpace Frontend (Angular UI) configuration
 dspace_frontend_version: "{{ dspace_version }}"  # Keep in sync with backend version
@@ -108,7 +108,7 @@ maven_opts: "-Xmx1024M -Xms512M"
 ant_opts: "-Xmx1024M -Xms512M"
 
 # System settings
-timezone: "UTC"
+timezone: "Africa/Tripoli"
 locale: "en_GB.UTF-8"
 
 # Nginx configuration
@@ -118,7 +118,7 @@ nginx_client_max_body_size: "512M"
 nginx_redirect_to_https: false  # Set to true to redirect HTTP to HTTPS (when SSL is enabled)
 
 # SSL/Domain configuration
-domain_name: ansible_hostname  # IMPORTANT: Change to your actual domain
+domain_name: "{{ ansible_fqdn }}" # IMPORTANT: Change to your actual domain
 ssl_enabled: false  # Set to true when you have a valid domain
 certbot_email: "admin@dspace-server.localnet"  # Your email for Let's Encrypt notifications
 certbot_staging: false  # Set to true for testing (avoids rate limits)
