@@ -50,9 +50,9 @@
       when: lookup('env', 'CI') != 'true'
       ignore_errors: yes
 
-    #- name: Set timezone
-    #  timezone:
-    #    name: "{{ timezone }}"
+    - name: Set timezone
+      timezone:
+        name: "{{ timezone }}"
 
     - name: Generate locale
       locale_gen:
