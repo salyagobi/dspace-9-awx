@@ -10,17 +10,16 @@
     state: present
     update_cache: yes
 
-- name: Add PostgreSQL APT repository key
-  apt_key:
+- name: Download PostgreSQL key
+  get_url:
     url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
-    state: present
-    validate_certs: false
+    dest: /usr/share/keyrings/postgresql.asc
+    mode: '0644'
 
-- name: Add PostgreSQL APT repository
+- name: Add PostgreSQL repository
   apt_repository:
-    repo: "deb http://apt.postgresql.org/pub/repos/apt {{ ansible_lsb.codename }}-pgdg main"
+    repo: "deb [signed-by=/usr/share/keyrings/postgresql.asc] http://apt.postgresql.org/pub/repos/apt {{ ansible_distribution_release }}-pgdg main"
     state: present
-    update_cache: yes
 
 - name: Install PostgreSQL {{ postgres_version }}
   apt:
